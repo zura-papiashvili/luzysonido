@@ -79,7 +79,12 @@ def restricted_page_view(request):
     # Check if the user has already entered the correct code
     if request.session.get("access_granted", False):
         posts = Post.objects.filter(access_type="private").order_by("-date")
-        return render(request, "restricted_page.html", {"page": page, "posts": posts})
+        events = ZoomEvent.objects.filter(access_type="private").all()
+        return render(
+            request,
+            "restricted_page.html",
+            {"page": page, "posts": posts, "events": events},
+        )
 
     if request.method == "POST" and form.is_valid():
 
@@ -87,8 +92,11 @@ def restricted_page_view(request):
             # Store that the user has entered the correct code
             request.session["access_granted"] = True
             posts = Post.objects.filter(access_type="private").order_by("-date")
+            events = ZoomEvent.objects.filter(access_type="private").all()
             return render(
-                request, "restricted_page.html", {"page": page, "posts": posts}
+                request,
+                "restricted_page.html",
+                {"page": page, "posts": posts, "events": events},
             )
         else:
             # If the code doesn't match, deny access
