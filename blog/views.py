@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Author, Post, FAQ, Carousel, RestrictedPage
+from .models import Author, Post, FAQ, Carousel, RestrictedPage, ZoomEvent
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -9,15 +9,23 @@ from luzysonido.settings import EMAIL_HOST_USER
 
 
 def home(request):
+    events = ZoomEvent.objects.filter(access_type="public").all()
     posts = Post.objects.filter(access_type="public").order_by("-date")[:3]
     faqs = FAQ.objects.all()
     authors = Author.objects.all()[:3]
     carousel = Carousel.objects.filter(title="home-cover").first()
     images = carousel.images.all()
+    print("tttt", events)
     return render(
         request,
         "blog/home.html",
-        {"posts": posts, "faqs": faqs, "authors": authors, "carousel": images},
+        {
+            "posts": posts,
+            "faqs": faqs,
+            "authors": authors,
+            "carousel": images,
+            "events": events,
+        },
     )
 
 
@@ -88,3 +96,8 @@ def restricted_page_view(request):
 
     # Render the form if the code hasn't been submitted yet
     return render(request, "enter_code.html", {"form": form, "page": page})
+
+
+def zoom_events(request):
+    events = ZoomEvent.objects.all()
+    return render(request, "zoom_events.html", {"events": events})

@@ -183,3 +183,28 @@ class RestrictedPage(models.Model):
     class Meta:
         verbose_name = "Página para iniciados"
         verbose_name_plural = "Páginas para iniciados"
+
+
+class ZoomEvent(models.Model):
+    title = models.CharField(max_length=200, verbose_name="título")
+    type = models.CharField(
+        max_length=20,
+        choices=[("webinar", "Webinar"), ("workshop", "Taller")],
+        verbose_name="tipo",
+    )
+    access_type = models.CharField(
+        max_length=20,
+        choices=[("public", "Público"), ("private", "Privado")],
+        default="public",
+        verbose_name="tipo de acceso",
+    )
+    description = models.TextField(verbose_name="descripción")
+    event_time = models.DateTimeField(verbose_name="fecha y hora")
+    zoom_link = models.URLField(verbose_name="enlace de zoom")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Evento de Zoom"
+        verbose_name_plural = "Eventos de Zoom"

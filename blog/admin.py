@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.forms import DateTimeInput
+from django import forms
 
 # Register your models here.
 
@@ -11,6 +13,7 @@ from .models import (
     CarouselImage,
     Carousel,
     RestrictedPage,
+    ZoomEvent,
 )
 
 
@@ -53,6 +56,26 @@ class CarouselAdmin(admin.ModelAdmin):
 class RestrictedPageAdmin(admin.ModelAdmin):
     list_display = ("title", "access_code")
     search_fields = ("title", "content")
+
+
+# Define a custom form for the ZoomEvent admin
+class ZoomEventForm(forms.ModelForm):
+    class Meta:
+        model = ZoomEvent
+        fields = "__all__"
+
+    # Override the event_time field to use a 'datetime-local' input
+    event_time = forms.DateTimeField(
+        widget=DateTimeInput(attrs={"type": "datetime-local"}),
+        input_formats=["%Y-%m-%dT%H:%M"],  # Format matching the datetime-local input
+    )
+
+
+@admin.register(ZoomEvent)
+class ZoomEventAdmin(admin.ModelAdmin):
+    form = ZoomEventForm
+    list_display = ["title", "event_time", "type", "access_type"]
+    search_fields = ["title", "description"]
 
 
 admin.site.register(FAQ, FAQAdmin)

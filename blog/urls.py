@@ -12,6 +12,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
+    path("events/", views.zoom_events, name="events"),
     path("posts/", views.posts, name="posts"),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}),
     path("restricted/", views.restricted_page_view, name="restricted"),

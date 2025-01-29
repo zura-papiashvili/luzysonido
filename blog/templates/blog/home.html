@@ -118,6 +118,35 @@
     </div>
 </div>
 
+<!-- Meetings Section -->
+<!-- Meetings Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary" data-aos="fade-up">Próximas Reuniones</h2>
+    <div class="row">
+        {% for meeting in events %}
+       
+            <div class="col-md-4 mb-4 d-flex align-items-stretch" data-aos="fade-up">
+                <div class="card shadow border-0 w-100 fade-up" style="border-radius: 15px; overflow: hidden;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h3 class="card-title text-primary fw-bold">{{ meeting.title }}</h3>
+                        <p class="card-text text-muted">{{ meeting.description }}</p>
+                        <p class="card-text"><strong>Tipo:</strong> {{ meeting.type }}</p>
+                        <p class="card-text"><strong>Acceso:</strong> {{ meeting.access_type }}</p>
+                        <p class="card-text"><strong>Fecha y Hora:</strong> {{ meeting.event_time }}</p>
+                        <a href="{{ meeting.zoom_link }}" class="btn btn-primary mt-auto" target="_blank" rel="noopener noreferrer" style="background-color: #b08e19;">Unirse a la Reunión</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="alert alert-warning text-center" role="alert" data-aos="fade-up">
+                No hay reuniones disponibles.
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="text-center mt-4" data-aos="fade-up">
+    <a href="{% url 'events' %}" class="btn btn-primary" style="background-color: #b08e19;"> Ver Todas las Reuniones</a>
+</div>
 <!-- Include AOS JavaScript -->
 {% comment %} <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script> {% endcomment %}
 
