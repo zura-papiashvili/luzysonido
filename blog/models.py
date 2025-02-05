@@ -198,6 +198,13 @@ class ZoomEvent(models.Model):
         default="public",
         verbose_name="tipo de acceso",
     )
+    image = models.ImageField(
+        upload_to="zoom/events",
+        verbose_name="imagen",
+        validators=[validate_image_size],
+        blank=True,
+        null=True,
+    )
     description = models.TextField(verbose_name="descripción")
     event_time = models.DateTimeField(verbose_name="fecha y hora")
     zoom_link = models.URLField(verbose_name="enlace de zoom")
