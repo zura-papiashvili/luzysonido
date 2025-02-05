@@ -10,7 +10,7 @@ from .utils import compress_and_optimize_image
 def validate_image_size(image):
     """Validates image size to ensure it doesn't exceed a specific limit."""
     filesize = image.file.size
-    limit_mb = 10  # Max size in MB
+    limit_mb = 5  # Max size in MB
     if filesize > limit_mb * 1024 * 1024:
         raise ValidationError(f"Max size of image is {limit_mb} MB")
 
@@ -156,11 +156,6 @@ class CarouselImage(models.Model):
     )
 
     url = models.URLField(max_length=200, verbose_name="URL", blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        # Compress and optimize image before saving
-        self.image = compress_and_optimize_image(self.image)
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Imagen de {self.carousel.title}"
