@@ -24,7 +24,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title", "date", "author")
+    list_display = ("title", "date", "author", "access_type")
     list_filter = ("author", "date", "tags")
     search_fields = ("title", "content")
     prepopulated_fields = {"slug": ("title",)}
