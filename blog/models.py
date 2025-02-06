@@ -67,7 +67,6 @@ class Post(models.Model):
         default="public",
         verbose_name="tipo de acceso",
     )
-    slug = models.SlugField(unique=True, db_index=True, verbose_name="slug")
     youtube_url = models.URLField(null=True, verbose_name="URL de YouTube")
     content = models.TextField(
         validators=[MinLengthValidator(10)], verbose_name="contenido"
