@@ -13,6 +13,12 @@
     --hover-bg-dark: #5a4e4e;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 /* Default Light Mode */
 body {
     background-color: var(--background-light);
