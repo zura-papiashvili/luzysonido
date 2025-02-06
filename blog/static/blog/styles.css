@@ -22,3 +22,22 @@
     font-size: 1.1rem;
     /* Slightly larger text for better readability */
 }
+
+
+@media (max-width: 768px) {
+    .position-absolute {
+        margin-left: 100px !important;
+    }
+}
+
+.hover-effect:hover {
+    background-color: rgb(153, 132, 39) !important;
+    color: rgb(12, 48, 204) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+    margin-top: -70px;
+    height: 100vh;
+}

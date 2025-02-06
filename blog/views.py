@@ -15,7 +15,6 @@ def home(request):
     authors = Author.objects.all()[:3]
     carousel = Carousel.objects.filter(title="home-cover").first()
     images = carousel.images.all()
-    print("tttt", events)
     return render(
         request,
         "blog/home.html",

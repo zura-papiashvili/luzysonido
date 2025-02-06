@@ -5,29 +5,46 @@
 
 {% block content %}
 
-<style>
-    .carousel{
-        margin-top: -70px;
-        height: 100vh;
-    }
-</style>
+
 
 <!-- Include AOS CSS -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<!-- Link to external CSS file -->
+<link rel="stylesheet" href="{% static 'blog/styles.css' %}">
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide position-relative" data-bs-ride="carousel">
+    <!-- Carousel Indicators -->
     <div class="carousel-indicators">
         {% for i in carousel %}
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" 
+                class="{% if forloop.first %}active{% endif %}" 
+                aria-current="{% if forloop.first %}true{% endif %}" 
+                aria-label="Slide {{ forloop.counter }}">
+            </button>
         {% endfor %}
     </div>
+
+    <!-- Carousel Inner -->
     <div class="carousel-inner">
         {% for image in carousel %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ image.image.url }}" class="d-block w-100" alt="Slide {{ forloop.counter }}" style="object-fit: cover; object-position: bottom; height: 100vh;">
+                <img src="{{ image.image.url }}" class="d-block w-100" alt="Slide {{ forloop.counter }}" 
+                    style="object-fit: cover; object-position: bottom; height: 100vh;">
             </div>
         {% endfor %}
     </div>
+
+    <!-- Static Buttons Overlay -->
+    <div class="position-absolute top-50 start-0 translate-middle-y text-center" style="margin-left: 150px;">
+        <div class="text-center mb-4" data-aos="fade-up">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSekhdaorQRJHdRLAQX-UkUhnNe70nWLWcORJ6G_rc-mOUJemw/viewform?fbclid=IwZXh0bgNhZW0CMTEAAR2a0PrbCKNEfmqBdub2RY_l4H-boSy6Wkbe5UKEsmdHLKaUd0J0BbhY0Fw_aem_wGCXZE1LxgoZOG2woqhlTA" class="btn btn-gold btn-lg hover-effect" target="_blank" rel="noopener noreferrer" style="background-color: #b08e19; color:rgb(17, 26, 97); width: 200px;">Quiero Iniciarme</a>
+        </div>
+        <div class="text-center mb-4" data-aos="fade-up">
+            <a href="{% url 'restricted' %}" class="btn btn-gold btn-lg hover-effect" target="_blank" rel="noopener noreferrer" style="background-color: #b08e19; color:rgb(17, 26, 97); width: 200px;">Que es Luz Y Sonido?</a>
+        </div>
+    </div>
+
+    <!-- Carousel Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -38,12 +55,7 @@
     </button>
 </div>
 <div class="container mt-4">
-    <div class="text-center mb-4" data-aos="fade-up">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSekhdaorQRJHdRLAQX-UkUhnNe70nWLWcORJ6G_rc-mOUJemw/viewform?fbclid=IwZXh0bgNhZW0CMTEAAR2a0PrbCKNEfmqBdub2RY_l4H-boSy6Wkbe5UKEsmdHLKaUd0J0BbhY0Fw_aem_wGCXZE1LxgoZOG2woqhlTA" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="background-color: #b08e19;">Quiero Iniciarme</a>
-    </div>
-    <div class="text-center mb-4" data-aos="fade-up">
-        <a href="{% url 'restricted' %}" class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="background-color: #b08e19;">Para Iniciados</a>
-    </div>
+    
     <h2 class="mb-4 text-center" data-aos="fade-up">Nuevos Videos</h2>
     <div class="row">
         {% for post in posts %}
