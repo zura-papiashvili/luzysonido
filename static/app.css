@@ -16,12 +16,12 @@
 html,
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
     width: 100%;
 }
 
 /* Default Light Mode */
 body {
+    overflow: hidden;
     background-color: var(--background-light);
     color: var(--text-light);
 }
