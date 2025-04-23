@@ -106,5 +106,9 @@ def restricted_page_view(request):
 
 
 def zoom_events(request):
-    events = ZoomEvent.objects.all()
+    events = ZoomEvent.objects.filter(access_type="public").all()
     return render(request, "zoom_events.html", {"events": events})
+
+
+def luzysonido(request):
+    return render(request, "luzysonido.html")

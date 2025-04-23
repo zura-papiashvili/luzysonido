@@ -16,4 +16,5 @@ urlpatterns = [
     path("posts/", views.posts, name="posts"),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}),
     path("restricted/", views.restricted_page_view, name="restricted"),
+    path("luzysonido/", views.luzysonido, name="luzysonido"),
 ]

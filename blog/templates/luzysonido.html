@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block meta %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block title %}Que es Luz y Sonido{% endblock %}
+
+{% block content %}
+
+<div class="row p-4 my-4">
+    <div class="col-md-6 text-center p-3 d-flex align-items-center">
+        <div>
+            <h1>EL SENDERO DE LA LUZ & EL SONIDO</h1>
+            <p class="fs-5">
+                Todo en el Universo está hecho de Luz y Sonido. La Luz y el Sonido son uno solo y son la fuente de todo cuanto existe. También es la energía que conforma los Reinos Espirituales y es la Fuente de lo que verdaderamente somos como seres humanos. El sendero de la Luz & el Sonido es un viaje de autodescubrimiento que lleva al Buscador a través de las Dimensiones Espirituales hasta encontrar el Estado de la Iluminación. Para recorrer este sendero se requiere ser iniciado en la Luz y el Sonido Divino.
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6 text-center p-3 d-flex justify-content-center align-items-center">
+        <img src="{% static 'images/mariposas.png' %}" alt="Image" class="img-fluid" style="max-width: 100%; height: auto;">
+    </div>
+</div>
+
+
+
+{% endblock %}
