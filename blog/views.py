@@ -12,7 +12,7 @@ def home(request):
     events = ZoomEvent.objects.filter(access_type="public").all()
     posts = Post.objects.filter(access_type="public").order_by("-date")[:3]
     faqs = FAQ.objects.all()
-    authors = Author.objects.all()[:3]
+    authors = Author.objects.all().order_by("id")[:3]
     carousel = Carousel.objects.filter(title="home-cover").first()
     images = carousel.images.all()
     return render(
@@ -29,7 +29,7 @@ def home(request):
 
 
 def about(request):
-    authors = Author.objects.all()
+    authors = Author.objects.all().order_by("id")
     return render(request, "about.html", {"authors": authors})
 
 
